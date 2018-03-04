@@ -20,8 +20,14 @@ This is my first attempt at using [Vue.js][vue-page]. I will be following along 
 * Tools, frameworks, and concepts that I will improve upon:
   * Node.js
   * express.js
+  * MongoDB
   * NPM
   * Git
+
+## Ongoing Thoughts and Observations
+
+* Building in Node.js still feels very similar. I am remembering things quite well as I go.
+* Module Alias is awesome. Great little NPM package to keep code nice and clean. It kind of reminds me of Sass, create a variable in one file to keep your code DRY and concise.
 
 [vue-page]: https://vuejs.org/
 [codeburst]: https://codeburst.io/
