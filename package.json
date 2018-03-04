@@ -1,7 +1,7 @@
 {
   "name": "budget-manager",
   "version": "1.0.0",
-  "description": "My first attempt at using Vue.js",
+  "description": "Focus Budget Manager app (Node.js & Vue.js)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +16,13 @@
     "url": "https://github.com/bqanderson/budget_manager/issues"
   },
   "homepage": "https://github.com/bqanderson/budget_manager#readme",
+  "_moduleAliases": {
+    "@root": ".",
+    "@BudgetManager": "./service/BudgetManagerAPI",
+    "@BudgetManagerModels": "./service/BudgetManagerAPI/app/models",
+    "@BudgetManagerAPI": "./services/BudgetManagerAPI/config/app.js",
+    "@config": "./services/BudgetManagerAPI/config/index.js"
+  },
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
