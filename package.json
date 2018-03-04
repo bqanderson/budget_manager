@@ -1,0 +1,32 @@
+{
+  "name": "budget-manager",
+  "version": "1.0.0",
+  "description": "My first attempt at using Vue.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bqanderson/budget_manager.git"
+  },
+  "author": "Brian Q Anderson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bqanderson/budget_manager/issues"
+  },
+  "homepage": "https://github.com/bqanderson/budget_manager#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "consign": "^0.1.6",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.2.0",
+    "module-alias": "^2.0.6",
+    "mongoose": "^5.0.8",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1"
+  }
+}

@@ -1,0 +1,29 @@
+# Focus Budget Manager (Vue.js exercise)
+
+This is my first attempt at using [Vue.js][vue-page]. I will be following along with a tutorial from [CodeBurst][codeburst] written by Gustavo Domaradzki. Part One of Four can be found [here][bm-tutorial]. Or you can find the GitHub repo [here][bm-github].
+
+## Objectives
+
+* To work with and learn more about [Vue.js][vue-page].
+* Strengthen my skills as a JavaScript developer.
+* Inspire future project.
+
+* New tools, frameworks, and concepts that I will also be using:
+  * JWT Authorization with Passport.js
+  * API methods
+  * Consign (NPM- script autoloader)
+  * CORS (NPM- Connect/Express middleware)
+  * Bcrypt (NPM- salt & hash generator)
+  * Morgan (NPM- HTTP request logger)
+  * Module Alias (NPM- Create aliases & register custom module paths)
+
+* Tools, frameworks, and concepts that I will improve upon:
+  * Node.js
+  * express.js
+  * NPM
+  * Git
+
+[vue-page]: https://vuejs.org/
+[codeburst]: https://codeburst.io/
+[bm-tutorial]: https://codeburst.io/building-a-budget-manager-with-vue-js-and-node-js-part-i-f3d7311822a8
+[bm-github]: https://github.com/gdomaradzki/focus-budget-manager
