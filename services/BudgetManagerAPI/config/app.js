@@ -19,3 +19,11 @@ app.use(cors());
 app.use(passport.initialize());
 
 app.set('budgetsecret', config.secret);
+
+consign({ cwd: 'services' })  // Using consign NPM package...
+  .include('BudgetManagerAPI/app/setup')  // ...ensure setup file (instatiate models) is loaded first...
+  .then('BudgetManagerAPI/app/api') // ...then API methods...
+  .then('BudgetManagerAPI/app/routes')  // ...then app routes
+  .into(app);
+
+  module.exports = app;
