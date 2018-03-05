@@ -5,7 +5,7 @@ module.exports = (mongoose, config) => {
     useMongoClient: true,
     promiseLibrary: global.Promise
   });
-  database.on('error', error => console.log('Connection to BudgetManager database failed: ${error}'));
+  database.on('error', error => console.log(`Connection to BudgetManager database failed: ${error}`));
   database.on('connected', () => console.log('Connected to BudgetManager database'));
   database.on('disconnected', () => console.log('Disconnected from BudgetManager database'));
   process.on('SIGINT', () => {

@@ -1,4 +1,5 @@
-const PassportJWT = require('passport-jwt'),
+const mongoose = require('mongoose'),
+      PassportJWT = require('passport-jwt'),
       ExtractJWT = PassportJWT.ExtractJwt,
       Strategy = PassportJWT.Strategy,
       config = require('./index.js'),
@@ -6,14 +7,16 @@ const PassportJWT = require('passport-jwt'),
 
 module.exports = (passport) => {
   const User = models.User;
+
   const parameters = {
     secretOrKey: config.secret,
-    jwtFormRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
   };
-  passport.user(new Strategy(parameters, (payload, done) => {
+
+  passport.use(new Strategy(parameters, (payload, done) => {
     User.findOne({ id: payload.id }, (error, user) => {
-      if(error) return done(error, false);
-      if(user) done(null, user);
+      if (error) return done(error, false);
+      if (user) done(null, user);
       else done(null, false);
     });
   }));

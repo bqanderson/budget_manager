@@ -18,8 +18,8 @@
   "homepage": "https://github.com/bqanderson/budget_manager#readme",
   "_moduleAliases": {
     "@root": ".",
-    "@BudgetManager": "./service/BudgetManagerAPI",
-    "@BudgetManagerModels": "./service/BudgetManagerAPI/app/models",
+    "@BudgetManager": "./services/BudgetManagerAPI",
+    "@BudgetManagerModels": "./services/BudgetManagerAPI/app/models",
     "@BudgetManagerAPI": "./services/BudgetManagerAPI/config/app.js",
     "@config": "./services/BudgetManagerAPI/config/index.js"
   },

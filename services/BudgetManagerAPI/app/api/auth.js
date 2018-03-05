@@ -12,7 +12,7 @@ api.login = (User) => (req, res) => { // login method: 'User' param accesses the
     else {
       user.comparePassword(req.body.password, (error, matches) => { // Call User model method 'comparePassword' to verify user's password...
         if(matches && !error){  // If we have a match and there are no errors...
-          const token = jwt.sign({ user }, config.secrect); // Create a token from jsonwebtoken & pass 'secrect' from config/index.js
+          const token = jwt.sign({ user }, config.secret); // Create a token from jsonwebtoken & pass 'secrect' from config/index.js
           res.json({ success: true, message: 'Token granted', token }); // Send json response with 'token'
         }else{
           res.status(401).send({ success: false, message: 'Authentication failed. Wrong password' }); // Auth failed, wrong password for user
