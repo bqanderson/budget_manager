@@ -1,4 +1,4 @@
-# budget-manager
+# Focus Budget Manager (Vue.js Front End)
 
 > Focus Budget Manager app (Node.js & Vue.js)
 
