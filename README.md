@@ -28,6 +28,7 @@
 
   * Building in Node.js still feels very similar. I am remembering things quite well as I go.
   * Module Alias is awesome. Great little NPM package to keep code nice and clean. It kind of reminds me of Sass, create a variable in one file to keep your code DRY and concise.
+  * The directory setup on this is a bit different than I'm use to in Nod.js projects. Not sure if that's a [Vue.js][vue-page] thing, or part of this [tutorial][bm-tutorial].
 
 <!-- Links to source pages -->
 [vue-page]: https://vuejs.org/
