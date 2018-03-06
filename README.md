@@ -29,7 +29,7 @@
     * Sass, SCSS, CSS
     * HTML
     * NPM
-    * Git
+    * Git - Practicing with two local repos on differnet OSes 
 
 ## Ongoing Thoughts and Observations
 
