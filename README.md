@@ -9,6 +9,11 @@
   * Inspire future project.
 
   * New tools, frameworks, and concepts that I will also be using:
+    * Vue.js (obviously)
+    * Vue-cli for a quick Vue build
+    * Axios for handling HTTP request on the front end
+    * Vuetify for it's grid system & other components
+    * Vue-cookie (cookies! yay, cookies!)
     * JWT Authorization with Passport.js
     * API methods
     * Consign (NPM- script autoloader)
@@ -21,6 +26,8 @@
     * Node.js
     * express.js
     * MongoDB
+    * Sass, SCSS, CSS
+    * HTML
     * NPM
     * Git
 
@@ -28,7 +35,8 @@
 
   * Building in Node.js still feels very similar. I am remembering things quite well as I go.
   * Module Alias is awesome. Great little NPM package to keep code nice and clean. It kind of reminds me of Sass, create a variable in one file to keep your code DRY and concise.
-  * The directory setup on this is a bit different than I'm use to in Nod.js projects. Not sure if that's a [Vue.js][vue-page] thing, or part of this [tutorial][bm-tutorial].
+  * The directory setup on this is a bit different than I'm use to in Node.js projects. Not sure if that's a [Vue.js][vue-page] thing, or part of this [tutorial][bm-tutorial].
+  * This all feels a bit like working in Ruby on Rails. But my knowledge of JS is much better than Ruby at this point; making debugging much easier.
 
 <!-- Links to source pages -->
 [vue-page]: https://vuejs.org/
