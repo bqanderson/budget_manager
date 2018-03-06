@@ -29,7 +29,7 @@
     * Sass, SCSS, CSS
     * HTML
     * NPM
-    * Git
+    * Git - Working on two local repos (One on macOS; One on Windows) 
 
 ## Ongoing Thoughts and Observations
 
