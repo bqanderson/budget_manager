@@ -8,12 +8,15 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {}
+  }
 }
 </script>
 
 <style lang="scss">
-@import "./assets/styles";
+  @import "./assets/styles";
 
 body {
   background: url('./assets/images/background.jpg') no-repeat center center fixed;
@@ -27,6 +30,9 @@ body {
     background-color: $background-tint;
     opacity: .3;
     z-index: -1;
+  }
+  .application {
+    background: none;
   }
 }
 </style>

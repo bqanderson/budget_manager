@@ -24,7 +24,7 @@ export default {
     Axios.post(`${BudgetManagerAPI}/api/v1/signup`, credentials)  // Use Axios to handle HTTP POST request to API
       .then(({ data: { token } }) => {  // Get token value from data response (the only data needed)
         context.$cookie.set('token', token, '1D') // Store token value as cookie (set to expire in 1 day)
-        context.validSignup = true  // Set component's 'validSignup' value to true
+        context.validSignUp = true  // Set component's 'validSignUp' value to true
         this.user.authenticated = true  // Set user's  object 'authenticated" value to true'
 
         if(redirect) router.push(redirect)  // Redirect user to 'redirect' argument
