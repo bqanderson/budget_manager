@@ -6,6 +6,12 @@ import * as Auth from '@/components/pages/Authentication'
 import Home from '@/components/pages/Home'
 import Authentication from '@/components/pages/Authentication/Authentication'
 
+// Global Componets ////////////////////////////////////////////
+import Header from '@/components/Header'
+
+// Register Componets //////////////////////////////////////////
+Vue.component('app-header', Header)
+
 Vue.use(Router)
 
 const router = new Router({
@@ -13,7 +19,10 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home,
+      components: {
+        default: Home,
+        header: Header
+      },
       meta: {
         requiredAuth: true
       }
@@ -29,12 +38,12 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.meta.requiredAuth) {
     if (Auth.default.user.authenticated) {
-      next ()
+      next()
     } else {
       router.push('/login')
     }
   } else {
-    next ()
+    next()
   }
 })
 

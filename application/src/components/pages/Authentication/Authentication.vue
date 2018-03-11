@@ -54,33 +54,33 @@
 </template>
 
 <script>
-import Authentication from '@/components/pages/Authentication'  // Import Autnetication 'index.js' for methods within
+import Authentication from '@/components/pages/Authentication'
 export default {
-  data() {
+  data () {
     return {
-      snackbar: false,  // Used to display snackbar
-      validLogin: false,  // Used to validate login form
-      validSignUp: false, // Used to validate sign up form
-      signUpVisible: false, // Used to render sign up form (if true)
-      loginPasswordVisible: false,  // Used to show login password (if true)
-      signUpPasswordVisible: false, // Used to show sign up password (if true)
-      rules: [ (value) => !!value || 'This field is required' ],  // Rules for validating inputs
-      credentials: {  // Object bound to login inputs for authentication
+      snackbar: false,
+      validLogin: false,
+      validSignUp: false,
+      signUpVisible: false,
+      loginPasswordVisible: false,
+      signUpPasswordVisible: false,
+      rules: [ (value) => !!value || 'This field is required' ],
+      credentials: {
         username: '',
         password: ''
       },
-      newUser: {  // Object bound to sign up inputs for authentication
+      newUser: {
         username: '',
         password: ''
       },
-      message: '' // Used to render authentication messages
+      message: ''
     }
   },
   methods: {
-    submitAuthentication() {  // Call authenticate method from Authentication JS file
+    submitAuthentication () {
       Authentication.authenticate(this, this.credentials, '/')
     },
-    submitSignUp() {  // Call authentication method from Authentication JD file
+    submitSignUp () {
       Authentication.signup(this, this.newUser, '/')
     }
   }

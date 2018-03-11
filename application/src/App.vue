@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <v-app>
     <v-container>
       <router-view/>
     </v-container>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -20,6 +20,7 @@ export default {
 
 body {
   background: url('./assets/images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
   &:after {
     content: '';
     position: fixed;
