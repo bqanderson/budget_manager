@@ -6,42 +6,45 @@ const BudgetManagerAPI = `http://${window.location.hostname}:3001`
 export default {
   user: { authenticated: false },
 
-  authenticate(context, credentials, redirect){ // context == Vue component | credentials == username&password | redirect == redirect path
+  authenticate (context, credentials, redirect){
     Axios.post(`${BudgetManagerAPI}/api/v1/auth`, credentials)
-      .then(({ data: { token } }) => {  // Get token value from data response (the only data needed)
-        context.$cookie.set('token', token, '1D') // Store token value as cookie (set to expire in 1 day)
-        context.validLogin = true // Set components 'validLog' value to true
-        this.user.authenticated = true  // Set user's object 'authenticated' value to true
+      .then(({ data: { token } }) => {
+        context.$cookie.set('token', token, '1D')
 
-        if(redirect) router.push(redirect)  // Redirect user to 'redirect' argument
-      }).catch(({ response: { data } }) => {  // Otherwise...
-        context.snackbar = true // ...Set component's 'snackbar' value to true, and...
-        context.message = data.message  //  ...Set component's 'message' to error message
+        context.message = 'Authenticated'
+        context.validLogin = true
+
+        this.user.authenticated = true
+
+        if (redirect) router.push(redirect)
+      }).catch(({ response: { data } }) => {
+        context.snackbar = true
+        context.message = data.message
       })
   },
 
-  signup(context, credentials, redirect){ // context == Vue component | credentials == username&password | redirect == redirect path
-    Axios.post(`${BudgetManagerAPI}/api/v1/signup`, credentials)  // Use Axios to handle HTTP POST request to API
-      .then(({ data: { token } }) => {  // Get token value from data response (the only data needed)
-        context.$cookie.set('token', token, '1D') // Store token value as cookie (set to expire in 1 day)
-        context.validSignUp = true  // Set component's 'validSignUp' value to true
-        this.user.authenticated = true  // Set user's  object 'authenticated" value to true'
+  signup (context, credentials, redirect) {
+    Axios.post(`${BudgetManagerAPI}/api/v1/signup`, credentials)
+      .then(({ data: { token } }) => {
+        context.$cookie.set('token', token, '1D')
+        context.validSignUp = true
+        this.user.authenticated = true
 
-        if(redirect) router.push(redirect)  // Redirect user to 'redirect' argument
-      }).catch(({ response: { data } }) => {  // Otherwise...
-        context.snackbar = true // ...Set component's 'snackbar' value to true, and..
-        context.message = data.message  // ...Set component's 'message' to error message
+        if (redirect) router.push(redirect)
+      }).catch(({ response: { data } }) => {
+        context.snackbar = true
+        context.message = data.message
       })
   },
 
-  CheckAuthentication(){  // Check to see if user is authenticated
+  checkAuthentication () {
     const token = document.cookie
 
     if(token) this.user.authenticated = true
     else this.user.authenticated = false
   },
 
-  GetAuthenticationHeader(context){ // Return Authentication Header
+  getAuthenticationHeader (context) {
     return `Bearer ${context.$cookie.get('token')}`
   }
 }
