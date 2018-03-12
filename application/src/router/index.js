@@ -8,7 +8,7 @@ import Authentication from '@/components/pages/Authentication/Authentication'
 
 // Global Componets ////////////////////////////////////////////
 import Header from '@/components/Header'
-import BudgetList from '@/compoents/Budget/BudgetList'
+import BudgetList from '@/components/Budget/BudgetList'
 
 // Register Componets //////////////////////////////////////////
 Vue.component('app-header', Header)

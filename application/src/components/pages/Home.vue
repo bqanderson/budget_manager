@@ -18,8 +18,8 @@
 <script>
 import Axios from 'axios'
 import Authentication from '@/components/pages/Authentication'
-import BudgetListHeader from './../Budgets/BudgetListHeader'
-import BudgetListBody from './../Budgets/BudgetListBody'
+import BudgetListHeader from './../Budget/BudgetListHeader'
+import BudgetListBody from './../Budget/BudgetListBody'
 
 const BudgetManagerAPI = `http://${window.location.hostname}:3001`
 

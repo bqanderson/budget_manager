@@ -45,7 +45,7 @@
 
       .md-budget-info {
         flex-basis: 25%;
-        width: 100%
+        width: 100%;
         background-color: rgba(0, 175, 255, 0.45);
         border: 1px solid $border-color-input;
         padding: 0 15px;
