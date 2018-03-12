@@ -48,12 +48,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./../../assets/styles";
+  @import "./../../assets/styles";
 
-.l-home {
-  background-color: $background-color;
-  margin: 25px auto;
-  padding: 15px;
-  min-width: 272px;
-}
+  .l-home {
+    background-color: $background-color;
+    margin: 25px auto;
+    padding: 15px;
+    min-width: 272px;
+  }
 </style>
