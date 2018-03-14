@@ -1,38 +1,44 @@
-const mongoose = require('mongooose');
+const mongoose = require('mongoose');
 
 const api = {};
 
 api.store = (User, Budget, Client, Token) => (req, res) => {
   if (Token) {
+    console.log('===> Client.findOne({ _id: '+req.body.client+' }...)');
+    Client.findOne({ _id: req.body.client }, (error, client) => {
+      if (error) {
+      console.log('Status: 400 | Error: '+error);
+      res.status(400).json(error);
+      }
 
-    Client.findOne({ _id: req.body.client_id }, (error, client) => {
-      if (error) res.status(400).json(error);
 
       if (client) {
         const budget = new Budget({
-          client_id: req.body.client_id,
-          user_id: req.body.user_id,
+          client_id: req.body.client,
+          user_id: req.query.user_id,
           client: client.name,
           state: req.body.state,
+          description: req.body.description,
           title: req.body.title,
-          total_price: req.body.total_price,
+          total_price: req.body.total,
           items: req.body.items
         });
 
         budget.save(error => {
-          if (error) res.status(400).json(error)
-          res.status(200).json({ success: true, message: 'Budget registered successfully' })
+          if (error) return res.status(400).json(error)
+          res.status(200).json({ success: true, message: "Budget registered successfully" });
         })
       } else {
-        res.status(400).json({ success: false, messsage: 'Invaild client' })
+        res.status(400).json({ success: false, message: "Invalid client" })
       }
     })
-  } else return res.status(403).send({ success: false, message: 'Unauthorized' })
+
+  } else return res.status(403).send({ success: false, message: 'Unauthorized' });
 }
 
 api.getAll = (User, Budget, Token) => (req, res) => {
   if (Token) {
-    Budget.find({ user_id: req.query.user_id }, (error, budget) => {
+    Budget.find({ _id: req.query.user_id }, (error, budget) => {
       if (error) return res.status(400).json(error);
       res.status(200).json(budget);
       return true;

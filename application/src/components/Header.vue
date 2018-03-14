@@ -4,7 +4,7 @@
       <v-flex xs12 md5>
         <v-text-field v-model="search"
                       label="Search"
-                      apend-icon="search"
+                      append-icon="search"
                       color="light-blue lighten-1">
 
         </v-text-field>
@@ -15,7 +15,7 @@
       </v-flex>
 
       <v-flex xs12 offset-md1 md2>
-        <v-select lable="Status"
+        <v-select label="Status"
                   color="lignt-blue lighten-1"
                   v-model="status"
                   :items="statusItems"
@@ -59,12 +59,14 @@ export default {
     padding: 0 15px;
     min-width: 272px;
 
-    label, input, .icon, .input-group__selection__comma {
+    label, input, .icon, .input-group__selections__comma {
       color: #29b6f6!important;
     }
 
     .input-group__details {
-      background-color: $border-color-input !important;
+      &:before {
+        background-color: $border-color-input !important;
+      }
     }
 
     .btn {
