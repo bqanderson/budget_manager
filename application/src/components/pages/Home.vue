@@ -1,15 +1,18 @@
 <template>
   <main class="l-home-page">
-    <app-header></app-header>
-    <div class="l-home">
+    <app-header :budgetsVisible="budgetsVisible" @toggleVisibleData="budgetsVisible = !budgetsVisible"></app-header>
 
+    <div class="l-home">
       <h4 class="white--text text-xs-center my-0">
         Focus Budget Manager
       </h4>
 
       <list>
-        <list-header slot="list-header" :headers="budgetHeaders"></list-header>
-        <list-body slot="list-body" :data="budgets"></list-body>
+        <list-header slot="list-header" :headers="budgetsVisible ? budgetHeaders : clientHeaders"></list-header>
+        <list-body slot="list-body"
+                    :budgetsVisible="budgetsVisible"
+                    :data="budgetsVisible ? budgets : clients">
+        </list-body>
       </list>
     </div>
 
@@ -19,6 +22,47 @@
                 v-model="snackbar">
       {{ message }}
     </v-snackbar>
+
+    <v-fab-transition>
+      <v-speed-dial v-model="fab"
+                    bottom
+                    right
+                    fixed
+                    direction="top"
+                    transition="scale-transition">
+          <v-btn slot="activator"
+                 color="red lighten-1"
+                 dark
+                 fab
+                 v-model="fab">
+                <v-icon>add</v-icon>
+                <v-icon>close</v-icon>
+          </v-btn>
+
+        <v-tooltip left>
+          <v-btn color="light-blue lighten-1"
+                  dark
+                  small
+                  fab
+                  slot="activator">
+            <v-icon>assignment</v-icon>
+          </v-btn>
+          <span>Add new Budget</span>
+        </v-tooltip>
+
+        <v-tooltip left>
+          <v-btn color="green lighten-1"
+                  dark
+                  small
+                  fab
+                  slot="activator">
+            <v-icon>account_circle</v-icon>
+          </v-btn>
+          <span>Add new Client</span>
+        </v-tooltip>
+
+      </v-speed-dial>
+    </v-fab-transition>
   </main>
 </template>
 
@@ -40,14 +84,18 @@ export default {
       budgets: [],
       clients: [],
       budgetHeaders: ['Client', 'Title', 'Status', 'Actions'],
-      clientHeaders: ['Client', 'Title', 'Status', 'Actions'],
+      clientHeaders: ['Client', 'Email', 'Phone', 'Actions'],
+      budgetsVisible: true,
       snackbar: false,
       timeout: 6000,
-      message: ''
+      message: '',
+      fab: false
     }
   },
   mounted () {
     this.getAllBudgets()
+    this.getAllClients()
+    this.hidden = false
   },
   methods: {
     getAllBudgets () {
@@ -56,6 +104,18 @@ export default {
         params: { user_id: this.$cookie.get('user_id') }
       }).then(({data}) => {
         this.budgets = this.dataParser(data, '_id', 'client', 'title', 'state')
+      }).catch(error => {
+        this.snackbar = true
+        this.message = error.message
+      })
+    },
+
+    getAllClients () {
+      Axios.get(`${BudgetManagerAPI}/api/v1/client`, {
+        headers: { 'Authorization': Authentication.getAuthenticationHeader(this) },
+        params: { user_id: this.$cookie.get('user_id') }
+      }).then(({data}) => {
+        this.clients = this.dataParser(data, '_id', 'client', 'email', 'phone')
       }).catch(error => {
         this.snackbar = true
         this.message = error.message
