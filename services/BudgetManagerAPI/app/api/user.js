@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
 
-const api = {}; // Empty 'api' object to store API methods
+const api = {};
 
-api.signup = (User) => (req, res) => {  // Sign Up method used to create new accounts
-  if (!req.body.username || !req.body.password)  // If username and password ARE empty...
-    res.json({ success: false, message: 'Please, pass username and password' });  // ...Send message requesting that they are 'passed'
-  else { // If both username and password ARE NOT empty...
-    const newUser = new User({  // ...Create a new User with...
-      username: req.body.username,  // ...requested username and...
-      password: req.body.password,  // ...requested password with...
-      clients: [] // ...an empty clients array
+api.signup = (User) => (req, res) => {
+  if (!req.body.username || !req.body.password)
+    res.json({ success: false, message: 'Please, enter username and password' });
+  else {
+    const newUser = new User({
+      username: req.body.username,
+      password: req.body.password,
+      clients: []
     });
 
-    newUser.save((error) => { // Save method for new User Object
-      if(error) return res.status(400).json({ success: false, message: 'Username already exists' });  // If there are errors, 'Username already exists'
-      res.json({ success: true, message: 'Account created successfully' }); // 'Account created successfully' | respond with json
+    newUser.save((error) => {
+      if(error) return res.status(400).json({ success: false, message: 'Username already exists' });
+      res.json({ success: true, message: 'Account created successfully' });
     })
   }
 }
