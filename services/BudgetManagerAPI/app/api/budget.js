@@ -51,14 +51,14 @@ api.getAllFromClient = (User, Budget, Token) => (req, res) => {
   } else return res.status(401).send({ success: false, message: 'Unauthorized' });
 }
 
-api.index = (User, Budget, Token) => (req, res) => {
+api.index = (User, Budget, Client, Token) => (req, res) => {
   if (Token) {
-    User.findOne({ _id: req.body.user_id }, (error, user) => {
-      if (error) return res.status(400).json(error);
+    User.findOne({ _id: req.query.user_id }, (error, user) => {
+      if (error) res.status(400).json(error);
 
       if (user) {
-        Budget.findOne({ _id: req.body.user_id }, (error, user) => {
-          if (error) return res.status(400).json(error);
+        Budget.findOne({ _id: req.query._id }, (error, budget) => {
+          if (error) res.status(400).json(error);
           res.status(200).json(budget);
         })
       } else {
@@ -69,14 +69,14 @@ api.index = (User, Budget, Token) => (req, res) => {
   } else return res.status(401).send({ success: false, message: 'Unauthorized' });
 }
 
-api.edit = (User, Budget, Token) => (req, res) => {
+api.edit = (User, Budget, Client, Token) => (req, res) => {
   if (Token) {
-    User.findOne({ _id: req.body.user_id }, (error, user) => {
-      if (error) return res.status(400).json(error);
+    User.findOne({ _id: req.query.user_id }, (error, user) => {
+      if (error) res.status(400).json(error);
 
       if (user) {
-        Budget.findOneAndUpdate({ _id: req.body._id }, req.body, (error, user) => {
-          if (error) return res.status(400).json(error);
+        Budget.findOneAndUpdate({ _id: req.body._id }, req.body, (error, budget) => {
+          if (error) res.status(400).json(error);
           res.status(200).json(budget);
         })
       } else {
@@ -87,15 +87,15 @@ api.edit = (User, Budget, Token) => (req, res) => {
   } else return res.status(401).send({ success: false, message: 'Unauthorized' });
 }
 
-api.getByState = (User, Budget, Token) => (req, res) => {
+api.getByState = (User, Budget, Client, Token) => (req, res) => {
   if (Token) {
-    User.findOne({ _id: req.body.user_id }, (error, user) => {
+    User.findOne({ _id: req.query.user_id }, (error, user) => {
       if (error) return res.status(400).json(error);
 
       if (user) {
-        Budget.find({ _id: req.body.state }, (error, user) => {
+        Budget.find({ state: req.query.state }, (error, budget) => {
           console.log(budget)
-          if (error) return res.status(400).json(error);
+          if (error) res.status(400).json(error);
           res.status(200).json(budget);
         })
       } else {
@@ -106,9 +106,9 @@ api.getByState = (User, Budget, Token) => (req, res) => {
   } else return res.status(401).send({ success: false, message: 'Unauthorized' });
 }
 
-api.remove = (User, Budget, Token) => (req, res) => {
+api.remove = (User, Budget, Client, Token) => (req, res) => {
   if (Token) {
-    Budget.remove({ _id: req.body._id }, (error, removed) => {
+    Budget.remove({ _id: req.query._id }, (error, removed) => {
       if (error) return res.status(400).json(error);
       res.status(200).json({ success: true, message: 'Successfully Removed' });
     })
