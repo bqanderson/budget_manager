@@ -215,5 +215,12 @@
     margin: 30px 0 10px;
   }
 
-  .md-
+  .md-add-btn {
+    margin-top: 30px !important;
+    display: block;
+  }
+
+  .list__tile__title, .input-group__selections {
+    text-transform: uppercase !important;
+  }
 </style>
