@@ -91,3 +91,63 @@
     </v-layout>
   </div>
 </template>
+
+<script>
+  export default {
+    props: ['clients', 'saveBudget'],
+    data () {
+      return {
+        budget: {
+          title: null,
+          description: null,
+          state: 'writing',
+          client: null,
+          get total_price () {
+            let value = 0
+            this.items.forEach(({ subtotal }) => {
+              value += parseInt(subtotal)
+            })
+            return value
+          },
+          items: [
+            {
+              title: null,
+              quantity: 0,
+              price: 0,
+              get subtotal () {
+                return this.quantity * this.price
+              }
+            }
+          ]
+        },
+        states: [
+          'writing', 'editing', 'pending', 'approved', 'denied', 'waiting'
+        ]
+      }
+    },
+    methods: {
+      addItem () {
+        const items = this.budget.items
+        const item = {
+          title: '',
+          quantity: 0,
+          price: 0,
+          get subtotal () {
+            return this.quantity * this.price
+          }
+        }
+
+        items.push(item)
+      },
+
+      removeItem (selected) {
+        const items = this.budget.items
+        items.forEach((item, index) => {
+          if (item === selected) {
+            items.splice(index, 1)
+          }
+        })
+      }
+    }
+  }
+</script>
