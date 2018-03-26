@@ -32,3 +32,18 @@
     </v-layout>
   </div>
 </template>
+
+<script>
+  export default {
+    props: ['saveClient'],
+    data () {
+      return {
+        client: {
+          name: null,
+          email: null,
+          phone: null
+        }
+      }
+    }
+  }
+</script>
