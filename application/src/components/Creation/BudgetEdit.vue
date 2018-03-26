@@ -92,3 +92,88 @@
     </v-layout>
   </div>
 </template>
+
+<script>
+  export default {
+    props: ['clients', 'fixClientNameAndUpdate', 'selectedBudget'],
+    data () {
+      return {
+        budget: {
+          title: null,
+          description: null,
+          state: 'pending',
+          client: null,
+          get total_price () {
+            let value = 0
+            this.items.forEach(({ subtotal }) => {
+              value += parseInt(subtotal)
+            })
+            return value
+          },
+          items: [
+            {
+              title: null,
+              quantity: 0,
+              price: null,
+              get subtotal () {
+                return this.quantity * this.price
+              }
+            }
+          ]
+        },
+        states: [
+          'writing', 'editing', 'pending', 'approved', 'denied', 'waiting'
+        ]
+      }
+    },
+    mounted () {
+      this.parseBudget()
+    },
+    methods: {
+      addItem () {
+        const items = this.budget.items
+        const item = {
+          title: '',
+          quantity: 0,
+          price: 0,
+          get subtotal () {
+            return this.quantity * this.price
+          }
+        }
+
+        items.push(item)
+      },
+
+      removeItem (selected) {
+        const items = this.budget.items
+        items.forEach((item, index) => {
+          if (item === selected) {
+            items.splice(index, 1)
+          }
+        })
+      },
+
+      parseBudget () {
+        for (let key in this.selectedBudget) {
+          if (key !== 'total' && key !== 'items') {
+            this.budget[key] = this.selectedBudget[key]
+          }
+
+          if (key === 'items') {
+            const items = this.selectedBudget.items
+            const buildItems = item => ({
+              title: item.title,
+              quantity: item.quantity,
+              price: item.price,
+              get subtotal () {
+                return this.quantity * this.price
+              }
+            })
+            const parseItems = items => items.map(buildItems)
+            this.budget.items = parseItems(items)
+          }
+        }
+      }
+    }
+  }
+</script>
