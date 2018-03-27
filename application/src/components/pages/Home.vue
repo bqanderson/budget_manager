@@ -1,24 +1,47 @@
 <template>
   <main class="l-home-page">
-    <app-header :budgetsVisible="budgetsVisible" @toggleVisibleData="budgetsVisible = !budgetsVisible"></app-header>
+    <app-header :budgetsVisible="budgetsVisible"
+      @toggleVisibleData="budgetsVisible = !budgetsVisible; budgetCreation = !budgetCreation"
+      :selectState="selectState"
+      :search="search"
+      v-model="search">
+    </app-header>
 
     <div class="l-home">
       <h4 class="white--text text-xs-center my-0">
         Focus Budget Manager
       </h4>
 
-      <list>
+      <list v-if="listPage">
         <list-header slot="list-header" :headers="budgetsVisible ? budgetHeaders : clientHeaders"></list-header>
         <list-body slot="list-body"
                     :budgetsVisible="budgetsVisible"
-                    :data="budgetsVisible ? budgets : clients">
+                    :data="budgetsVisible ? budgets : clients"
+                    :search="search"
+                    :deleteItem="deleteItem"
+                    :getBudget="getBudget"
+                    :getClient="getClient"
+                    :parsedBudgets="parsedBudgets">
         </list-body>
       </list>
+
+      <create v-else-if="createPage"
+        :budgetCreation="budgetCreation"
+        :budgetEdit="budgetEdit"
+        :editPage="editPage"
+        :clients="clients"
+        :budget="budget"
+        :client="client"
+        :saveBudget="saveBudget"
+        :saveClient="saveClient"
+        :fixClientNameAndUpdate="fixClientNameAndUpdate"
+        :updateClient="updateClient">
+      </create>
     </div>
 
     <v-snackbar :timeout="timeout"
                 bottom="bottom"
-                color="red lighten-1"
+                :color="snackColor"
                 v-model="snackbar">
       {{ message }}
     </v-snackbar>
@@ -35,8 +58,8 @@
                  dark
                  fab
                  v-model="fab">
-                <v-icon>add</v-icon>
-                <v-icon>close</v-icon>
+            <v-icon>add</v-icon>
+            <v-icon>close</v-icon>
           </v-btn>
 
         <v-tooltip left>
@@ -44,7 +67,8 @@
                   dark
                   small
                   fab
-                  slot="activator">
+                  slot="activator"
+                  @click.native="budgetCreation = true; listPage = false; editPage = false; createPage = true">
             <v-icon>assignment</v-icon>
           </v-btn>
           <span>Add new Budget</span>
@@ -55,12 +79,36 @@
                   dark
                   small
                   fab
-                  slot="activator">
+                  slot="activator"
+                  @click.native="budgetCreation = false; listPage = false; editPage = false; createPage = true">
             <v-icon>account_circle</v-icon>
           </v-btn>
           <span>Add new Client</span>
         </v-tooltip>
 
+        <v-tooltip left>
+          <v-btn color="purple lighten-2"
+                 dark
+                 small
+                 fab
+                 slot="activator"
+                 @click.native="budgetCreation = false; listPage = true; budgetsVisible = true">
+            <v-icon>assessment</v-icon>
+          </v-btn>
+          <span>List Budgets</span>
+        </v-tooltip>
+
+        <v-tooltip left>
+          <v-btn color="deep-orange lighten-2"
+                 dark
+                 small
+                 fab
+                 slot="activator"
+                 @click.native="budgetCreation = false; listPage = true; budgetsVisible = false">
+            <v-icon>supervisor_account</v-icon>
+          </v-btn>
+          <span>List Clients</span>
+        </v-tooltip>
       </v-speed-dial>
     </v-fab-transition>
   </main>
