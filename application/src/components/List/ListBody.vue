@@ -1,7 +1,7 @@
 <template>
   <section class="l-list-body">
     <div class="md-list-item"
-          v-if="data != null && parseBudgets === null"
+          v-if="data != null && parsedBudgets === null"
           v-for="item in data">
 
       <div :class="budgetsVisible ? 'md-budget-info white--text' : 'md-client-info white--text'"
@@ -21,8 +21,8 @@
     </div>
 
     <div class="md-list-item"
-         v-if="parseBudgets !== null"
-         v-for="item in parseBudgets">
+         v-if="parsedBudgets !== null"
+         v-for="item in parsedBudgets">
 
       <div :class="budgetsVisible ? 'md-butget-info white--text' : 'md-client-info white--text'"
            v-for="info in item"
@@ -43,7 +43,12 @@
 
 <script>
   export default {
-    props: ['data']
+    props: ['data', 'budgetsVisible', 'deleteItem', 'getBudget', 'getClient', 'parsedBudgets'],
+    methods: {
+      getItemAndEdit (item) {
+        !item.phone ? this.getBudget(item) : this.getClient(item)
+      }
+    }
   }
 </script>
 
