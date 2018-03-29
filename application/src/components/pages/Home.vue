@@ -411,4 +411,8 @@
     padding: 15px;
     min-width: 272px;
   }
+
+  .snack__content {
+    justify-content: center !important;
+  }
 </style>
