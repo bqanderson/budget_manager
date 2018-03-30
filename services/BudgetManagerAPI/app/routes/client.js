@@ -11,6 +11,6 @@ module.exports = (app) => {
     .delete(passport.authenticate('jwt', config.session), api.remove(models.User, models.Client, app.get('budgetsecret')))
 
   app.route('/api/v1/client/single')
-    .get(passort.authenticate('jwt', config.session), api.index(models.User, models.Client, app.get('budgetsecret')))
+    .get(passport.authenticate('jwt', config.session), api.index(models.User, models.Client, app.get('budgetsecret')))
     .put(passport.authenticate('jwt', config.session), api.edit(models.User, models.Client, app.get('budgetsecret')))
 }

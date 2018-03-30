@@ -34,18 +34,18 @@
 </template>
 
 <script>
-  export default {
-    props: ['saveClient'],
-    data () {
-      return {
-        client: {
-          name: null,
-          email: null,
-          phone: null
-        }
+export default {
+  props: ['saveClient'],
+  data () {
+    return {
+      client: {
+        name: null,
+        email: null,
+        phone: null
       }
     }
   }
+}
 </script>
 
 <style lang="scss">

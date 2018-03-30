@@ -38,18 +38,19 @@
           <v-icon>delete_forever</v-icon>
         </v-btn>
       </div>
+    </div>
   </section>
 </template>
 
 <script>
-  export default {
-    props: ['data', 'budgetsVisible', 'deleteItem', 'getBudget', 'getClient', 'parsedBudgets'],
-    methods: {
-      getItemAndEdit (item) {
-        !item.phone ? this.getBudget(item) : this.getClient(item)
-      }
+export default {
+  props: ['data', 'budgetsVisible', 'deleteItem', 'getBudget', 'getClient', 'parsedBudgets'],
+  methods: {
+    getItemAndEdit (item) {
+      !item.phone ? this.getBudget(item) : this.getClient(item)
     }
   }
+}
 </script>
 
 <style lang="scss">

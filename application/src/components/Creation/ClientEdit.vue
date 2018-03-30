@@ -34,21 +34,21 @@
 </template>
 
 <script>
-  export default {
-    props: ['updateClient', 'selectedClient'],
-    data () {
-      return {
-        client: {
-          name: null,
-          email: null,
-          phone: null
-        }
+export default {
+  props: ['updateClient', 'selectedClient'],
+  data () {
+    return {
+      client: {
+        name: null,
+        email: null,
+        phone: null
       }
-    },
-    mounted () {
-      this.client = this.selectedClient
     }
+  },
+  mounted () {
+    this.client = this.selectedClient
   }
+}
 </script>
 
 <style lang="scss">
