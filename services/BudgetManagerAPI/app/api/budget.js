@@ -15,20 +15,20 @@ api.store = (User, Budget, Client, Token) => (req, res) => {
           state: req.body.state,
           description: req.body.description,
           title: req.body.title,
-          total_price: req.body.total_price,
+          total_price: req.body.total,
           items: req.body.items
         });
 
         budget.save(error => {
           if (error) return res.status(400).json(error)
-          res.status(200).json({ success: true, message: "Budget registered successfully" });
+          res.status(200).json({ success: true, message: "Budget registered successfully" })
         })
       } else {
         res.status(400).json({ success: false, message: "Invalid client" })
       }
     })
 
-  } else return res.status(403).send({ success: false, message: 'Unauthorized' });
+  } else return res.status(401).send({ success: false, message: 'Unauthorized' });
 }
 
 api.getAll = (User, Budget, Token) => (req, res) => {
@@ -62,7 +62,7 @@ api.index = (User, Budget, Client, Token) => (req, res) => {
           res.status(200).json(budget);
         })
       } else {
-        res.status(400).json({ success: false, message: 'Invalid Budget' })
+        res.status(400).json({ success: false, message: "Invalid budget" })
       }
     })
 
@@ -80,7 +80,7 @@ api.edit = (User, Budget, Client, Token) => (req, res) => {
           res.status(200).json(budget);
         })
       } else {
-        res.status(400).json({ success: false, message: 'Invalid Budget' })
+        res.status(400).json({ success: false, message: "Invalid budget" })
       }
     })
 
@@ -90,7 +90,7 @@ api.edit = (User, Budget, Client, Token) => (req, res) => {
 api.getByState = (User, Budget, Client, Token) => (req, res) => {
   if (Token) {
     User.findOne({ _id: req.query.user_id }, (error, user) => {
-      if (error) return res.status(400).json(error);
+      if (error) res.status(400).json(error);
 
       if (user) {
         Budget.find({ state: req.query.state }, (error, budget) => {
@@ -99,7 +99,7 @@ api.getByState = (User, Budget, Client, Token) => (req, res) => {
           res.status(200).json(budget);
         })
       } else {
-        res.status(400).json({ success: false, message: 'Invalid Budget' })
+        res.status(400).json({ success: false, message: "Invalid budget" })
       }
     })
 
@@ -109,8 +109,8 @@ api.getByState = (User, Budget, Client, Token) => (req, res) => {
 api.remove = (User, Budget, Client, Token) => (req, res) => {
   if (Token) {
     Budget.remove({ _id: req.query._id }, (error, removed) => {
-      if (error) return res.status(400).json(error);
-      res.status(200).json({ success: true, message: 'Successfully Removed' });
+      if (error) res.status(400).json(error);
+      res.status(200).json({ success: true, message: 'Removed successfully' });
     })
 
   } else return res.status(401).send({ success: false, message: 'Unauthorized' });

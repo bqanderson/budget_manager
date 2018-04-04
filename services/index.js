@@ -1,6 +1,6 @@
 require('module-alias/register');
 const http = require('http'),
-      BudgetManagerAPI = require('@BudgetManagerAPI'),  // '@BudgetManagerAPI' === './services/BudgetManagerAPI/config' (per module_alias NPM package)
+      BudgetManagerAPI = require('@BudgetManagerAPI'),
       BudgetManagerServer = http.Server(BudgetManagerAPI),
       BudgetManagerPORT = process.env.PORT || 3001,
       LOCAL = '0.0.0.0';

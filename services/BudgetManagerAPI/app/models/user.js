@@ -7,33 +7,34 @@ const Schema = mongoose.Schema({
     unique: true,
     required: true
   },
+
   password: {
     type: String,
     required: true
-  },
-  clients: [{}]
+  }
 });
 
-// Not using arrow functions here because of automatic lexical scope binding
-Schema.pre('save', function(next){
+// We won't use arrow functions here because of automatic lexical scope binding
+Schema.pre('save', function (next) {
   const user = this;
-  if(this.isModified('password') || this.isNew){
+
+  if (this.isModified('password') || this.isNew) {
     bcrypt.genSalt(10, (error, salt) => {
       if (error) return next(error);
+
       bcrypt.hash(user.password, salt, (error, hash) => {
         if (error) return next(error);
+
         user.password = hash;
         next();
       });
     });
-  }else{
-    return next();
-  }
+  } else return next();
 });
 
-Schema.methods.comparePassword = function(password, callback){
+Schema.methods.comparePassword = function (password, callback) {
   bcrypt.compare(password, this.password, (error, matches) => {
-    if(error) return callback(error);
+    if (error) return callback(error);
     callback(null, matches);
   });
 };

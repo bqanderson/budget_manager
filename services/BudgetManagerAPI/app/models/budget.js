@@ -31,6 +31,11 @@ const Schema = mongoose.Schema({
     ref: 'Client'
   },
 
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+
   items: [{}]
 });
 
