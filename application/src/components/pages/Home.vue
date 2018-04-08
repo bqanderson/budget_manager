@@ -138,17 +138,17 @@ export default {
       clients: [],
       budgetHeaders: ['Client', 'Title', 'Status', 'Actions'],
       clientHeaders: ['Client', 'Email', 'Phone', 'Actions'],
-      budgetVisible: true,
+      budgetsVisible: true,
       snackbar: false,
       timeout: 6000,
       message: '',
       fab: false,
       listPage: true,
-      createPage: true,
+      createPage: false,
       editPage: false,
       budgetCreation: true,
       budgetEdit: true,
-      snakcColor: 'red lighten-1'
+      snackColor: 'red lighten-1'
     }
   },
   mounted () {
@@ -185,7 +185,7 @@ export default {
         headers: { 'Authorization': Authentication.getAuthenticationHeader(this) },
         params: { user_id: this.$cookie.get('user_id') }
       }).then(({data}) => {
-        this.clients = this.dataParser(data, '_id', 'client', 'email', 'phone')
+        this.clients = this.dataParser(data, 'name', 'email', '_id', 'phone')
       }).catch(error => {
         this.errorHandler(error)
       })
