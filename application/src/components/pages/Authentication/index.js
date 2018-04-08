@@ -10,7 +10,7 @@ export default {
     Axios.post(`${BudgetManagerAPI}/api/v1/auth`, credentials)
       .then(({data}) => {
         context.$cookie.set('token', data.token, '1D')
-        context.$cookie.set('user_id', data._id, '1D')
+        context.$cookie.set('user_id', data.user._id, '1D')
         context.validLogin = true
 
         this.user.authenticated = true
