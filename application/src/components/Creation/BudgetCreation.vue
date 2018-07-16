@@ -161,7 +161,7 @@ export default {
 
   .l-budget-creation {
     label, input, .icon, .input-group__selections__comma, textarea {
-      color: #29b6f6!important;
+      color: #29b6f6 !important;
     }
 
     .input-group__details {
@@ -174,7 +174,7 @@ export default {
 
     .input-group--focused {
       .input-group__input {
-        border-color: #29b6f6!important
+        border-color: #29b6f6 !important
       }
     }
   }
